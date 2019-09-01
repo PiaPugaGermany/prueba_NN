@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <%= image_tag @todo.photo, class: "card-img-top" %>
+      <div class="card-body">
+        <h5 class="card-title"> <%= @todo.title %></h5>
+      </div>
+    </div>
+  </div>
+
+<div class="col-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Los primeros 5 que completaron la tarea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @top5.each do |u|%>
+            <tr class="row">
+              <td class="col-3"><%= User.find(u).photo ? image_tag(User.find(u).photo, :class => "img-fluid") : image_tag("https://image.flaticon.com/icons/png/512/97/97895.png", :class => "img-fluid")%></td>
+              <td class="col"><%= User.find(u).name ? User.find(u).name : "-"%></td>
+              <td><%= User.find(u).email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Quienes han completado esta tarea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @todousers_users_id.each do |u|%>
+            <tr>
+              <td><%= User.find(u).email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
